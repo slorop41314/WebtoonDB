@@ -41,11 +41,11 @@ module.exports = {
             res.status(202).send(user)
         } 
         else {
-            const path = require('path')
-            const remove = path.join(__dirname , '..', '..', 'public')
-            const relPath = req.file.path.replace(remove, '')
-            const pathFinal = "webtoondb.herokuapp.com" + relPath
-            const user = await User.findByIdAndUpdate(userId, {fullname : req.body.fullname, profilepicture : pathFinal}, {new : true, useFindAndModify: false})
+            // const path = require('path')
+            // const remove = path.join(__dirname , '..', '..', 'public')
+            // const relPath = req.file.path.replace(remove, '')
+            // //const pathFinal = "webtoondb.herokuapp.com" + relPath
+            const user = await User.findByIdAndUpdate(userId, {fullname : req.body.fullname, profilepicture : req.file.location}, {new : true, useFindAndModify: false})
             res.status(202).send(user)
         }
     }
