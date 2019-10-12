@@ -19,11 +19,6 @@ const s3 = new aws.S3()
     // })
     // const upload = multer({ storage })
 
-aws.config.update({
-	secretAccessKey : "k1CgD7tNl3vh9nqZl6xHYi9YaQYcqO3pDvaipdCc",
-	accessKeyId : "AKIAJYREMY3TAUA7VKBQ",
-	region: 'us-west-2'
-})
 
 const storage = multerS3({
     s3: s3,
