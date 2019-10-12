@@ -1,22 +1,23 @@
 'use strict'
-
+const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require('mongoose');
-
+const config = require('./config')
 const users = require('./src/routes/users')
 const auth = require('./src/routes/auth');
-
+const bodyParser = require('body-parser')
 const path = require('path')
 const express = require('express');
 const app = express();
 
 
 
-mongoose.connect("mongodb://slorop41314:slorop41314@ds333248.mlab.com:33248/heroku_55mdcwjq", {useNewUrlParser:true,  useUnifiedTopology: true})
+mongoose.connect(config.db, {useNewUrlParser:true,  useUnifiedTopology: true})
     .then(() => console.log('Now connected to MongoDB!'))
     .catch(err => console.error('Something went wrong', err));
 
 app.use(express.static('public'))
-
+app.use(bodyParser.json())
 app.use(express.json());
 
 app.use('/users', users);
